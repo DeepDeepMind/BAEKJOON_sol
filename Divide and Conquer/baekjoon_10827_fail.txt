@@ -2,16 +2,29 @@
 
 using namespace std;
 
-float square(float a, int b) {
-	if (b == 0) return 1;
-	return a * square(a, b - 1);
-}
+const int maxDecimal = 9;
 
 int main() {
-	float a;
+	double a;
 	int b;
 
 	cin >> a >> b;
-	cout << square(a, b);
+
+	long double result = 1.0;
+	for (size_t i = 0; i < b; i++)
+	{
+		result *= a;
+	}
+
+	int decimal = 0, decCounter = 1;
+	while (decimal < maxDecimal && decCounter*a - (int)(decCounter*a) != 0)
+	{
+		decCounter *= 10;
+		decimal++;
+	}
+	cout.setf(ios::fixed);
+	cout.precision(decimal*b);
+	cout << result;
+
 	return 0;
 }
