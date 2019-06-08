@@ -1,0 +1,17 @@
+#include <iostream>
+
+using namespace std;
+
+float square(float a, int b) {
+	if (b == 0) return 1;
+	return a * square(a, b - 1);
+}
+
+int main() {
+	float a;
+	int b;
+
+	cin >> a >> b;
+	cout << square(a, b);
+	return 0;
+}

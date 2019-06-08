@@ -1,0 +1,73 @@
+/*이차원배열*/
+
+#include <iostream>
+#define MaxLength 3*3*3*3*3*3*3
+
+using namespace std;
+
+int MinusOneCounter = 0, ZeroCounter = 0, PlusOneCounter = 0;
+
+void paper(int n, int **p) { //n은 한 변의 길이, p는 종이, i는 시작점
+	int k = **p; //k는 기준값
+
+				  /*종이의 모든 수가 기준값과 같은지 확인*/
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (*(*(p+i)+j) != k) {
+				k = 2;
+				break;
+			}
+		}
+		if (k = 2) break;
+	}
+
+	/*기준값이 한 가지가 아니라면*/
+	if (k = 2) {
+		paper(n / 9, p + n / 3 * 0); //1번 종이
+		paper(n / 9, p + n / 3 * 1); //2번 종이
+		paper(n / 9, p + n / 3 * 2); //3번 종이
+		paper(n / 9, p + n / 3 * 3); //4번 종이
+		paper(n / 9, p + n / 3 * 4); //5번 종이
+		paper(n / 9, p + n / 3 * 5); //6번 종이
+		paper(n / 9, p + n / 3 * 6); //7번 종이
+		paper(n / 9, p + n / 3 * 7); //8번 종이
+		paper(n / 9, p + n / 3 * 8); //9번 종이
+	}
+	/*기준값이 한 가지일 때 그 기준값의 개수만큼 카운터를 올린다.*/
+	else {
+		switch (k) {
+		case -1:
+			MinusOneCounter += n * n;
+			break;
+		case 0:
+			ZeroCounter += n * n;
+			break;
+		case 1:
+			PlusOneCounter += n * n;
+			break;
+		default:
+			break;
+		}
+	}
+	return;
+}
+
+int main() {
+	int n;
+	cin >> n;
+
+	int p[MaxLength][MaxLength];
+
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			cin >> p[i][j];
+		}
+	}
+
+	paper(n, (int**)p)
+	cout << MinusOneCounter << endl
+		<< ZeroCounter << endl
+		<< PlusOneCounter << endl;
+
+	return 0;
+}

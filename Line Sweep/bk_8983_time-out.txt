@@ -1,0 +1,48 @@
+#include <iostream>
+
+using namespace std;
+int counter = 0;
+
+int main() {
+	int m, n, l;
+	cin >> m >> n >> l;
+
+	//사대 배치
+	int *sade = new int[m];
+	for (int i = 0; i < m; i++)
+	{
+		cin >> sade[i];
+	}
+	//동물 배치
+	int **animal = new int*[n];
+	for (int i = 0; i < n; i++)
+	{
+		animal[i] = new int[2];
+	}
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < 2; j++)
+		{
+			cin >> animal[i][j];
+		}
+
+		for (int k = 0; k < m; k++)
+		{
+			if (abs(animal[i][0] - sade[k]) + animal[i][1] <= l) {
+				counter++;
+				break;
+			}
+		}
+	}
+
+	//얼마나 잡을 수 있을까?
+	//동물에서부터 사거리 안에 사대가 하나라도 있으면 카운트
+	cout << counter << endl;
+	delete[] sade;
+	for (int i = 0; i < n; i++)
+	{
+		delete[] animal[i];
+	}
+	delete[] animal;
+	return 0;
+}

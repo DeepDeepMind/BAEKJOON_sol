@@ -1,0 +1,25 @@
+#include <iostream>
+
+using namespace std;
+
+int two_square(int n) {
+	if (n == 0) return 1;
+	return 2 * two_square(n - 1);
+}
+
+void hanoi(int n, int a, int b, int c) {
+	if (n == 0)	return;
+		hanoi(n - 1, a, c, b);
+		cout << a << " " << c << endl;
+		hanoi(n - 1, b, a, c);
+}
+
+int main() {
+	int n;
+	cin >> n;
+
+	cout << two_square(n) - 1 << endl;
+	hanoi(n, 1, 2, 3);
+	return 0;
+}
+
